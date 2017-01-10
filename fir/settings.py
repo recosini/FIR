@@ -7,11 +7,15 @@ from fir.config.base import *
 DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = True
 
-# Sqlite3 database backend
+# MySQL database backend
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': MYSQL_DATABASE,
+        'USER': MYSQL_USER,
+        'PASSWORD':MYSQL_PASSWORD,
+        'HOST': MYSQL_HOST,
+        'PORT': 3306,
     }
 }
 
@@ -28,7 +32,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = (
 SECRET_KEY = 'DUMMY_KEY_FOR_DEVELOPMENT_DO_NOT_USE_IN_PRODUCTION'
 
 # Default REDIS configuration when using fir_celery
-REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'localhost')
+REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'redis')
 REDIS_PORT = 6379
 REDIS_DB = 0
 

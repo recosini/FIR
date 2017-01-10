@@ -3,6 +3,7 @@
 /fir/config/dev.py
 /fir/config/installed_apps.txt
 fir-env/
+mysql.env
 
 # Dev
 db.sqlite3
