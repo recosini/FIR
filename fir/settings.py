@@ -11,10 +11,10 @@ TEMPLATES[0]['OPTIONS']['debug'] = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': MYSQL_DATABASE,
-        'USER': MYSQL_USER,
-        'PASSWORD':MYSQL_PASSWORD,
-        'HOST': MYSQL_HOST,
+        'NAME': os.environ.get('MYSQL_ENV_MYSQL_DB'),
+        'USER': os.environ.get('MYSQL_ENV_MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_ENV_MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_PORT_3306_TCP_ADDR', 'db'),
         'PORT': 3306,
     }
 }

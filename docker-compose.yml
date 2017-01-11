@@ -1,21 +1,21 @@
 version: '2'
 
 services:
-  fir:
+  webapp:
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: fir
+    hostname: webapp
     command: ./run_fir.sh
     volumes:
       - .:/app/FIR
     ports:
       - "8000:8000"
     links:
-      - mysql
+      - db
       - redis
     depends_on:
-      - mysql
+      - db
       - redis
 
   nginx:
@@ -27,13 +27,15 @@ services:
     volumes:
       - /www/static
     volumes_from:
-      - fir
+      - webapp
     links:
-      - fir
+      - webapp:webapp
 
-  mysql:
+  db:
     image: mysql:5.7
-    hostname: mysql
+    hostname: db
+    volumes:
+      - mysqldata:/var/lib/mysql
     ports:
       - "3306:3306"
     env_file:
@@ -42,6 +44,8 @@ services:
   redis:
     image: redis:3.2.5
     hostname: redis
+    volumes:
+      - redisdata:/var/lib/redis/data
     ports:
       - "6379:6379"
 
@@ -56,3 +60,7 @@ services:
       - redis
     depends_on:
       - redis
+
+volumes:
+    redisdata:
+    mysqldata:

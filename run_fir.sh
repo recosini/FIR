@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 #cp fir/config/installed_apps.txt.sample fir/config/installed_apps.txt
-
+sleep 15
 
 ./manage.py migrate
 

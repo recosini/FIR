@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-sleep 15
+sleep 10
 
-celery -A fir worker -l info
+celery -A fir_celery.celeryconf worker -l info
