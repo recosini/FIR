@@ -6,7 +6,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: webapp
     command: ./run_fir.sh
     volumes:
       - .:/app/FIR
@@ -26,19 +25,19 @@ services:
     build:
       context: nginx
       dockerfile: Dockerfile
-    hostname: nginx
     volumes:
-      - /www/static
+      - ./static:/www/static
     volumes_from:
       - webapp
     ports:
-      - "80:80"
+      - "8080:8080"
     links:
       - webapp:webapp
+    depends_on:
+      - webapp
 
   db:
     image: mysql:5.7
-    hostname: db
     volumes:
       - mysqldata:/var/lib/mysql
     expose:
@@ -48,7 +47,6 @@ services:
 
   redis:
     image: redis:3.2.5
-    hostname: redis
     volumes:
       - redisdata:/var/lib/redis/data
     expose:

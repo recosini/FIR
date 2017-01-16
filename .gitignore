@@ -4,6 +4,7 @@
 /fir/config/installed_apps.txt
 fir-env/
 mysql.env
+static
 
 # Dev
 db.sqlite3

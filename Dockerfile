@@ -21,3 +21,6 @@ RUN pip install -r requirements.txt
 USER fir
 ENV HOME /app/FIR
 ENV USER fir
+
+RUN ls
+RUN pwd
