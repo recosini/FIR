@@ -1,8 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-#cp fir/config/installed_apps.txt.sample fir/config/installed_apps.txt
+# Uncomment the line below to set or reset installed apps each time
+# cp fir/config/installed_apps.txt.sample fir/config/installed_apps.txt
+
+# Wait for the db service to be fully operationnal
 sleep 20
-
 
 # Init Django project
 ./manage.py collectstatic --noinput
@@ -12,7 +14,5 @@ sleep 20
 # Import initial data and test users
 ./manage.py loaddata incidents/fixtures/seed_data.json && \
     ./manage.py loaddata incidents/fixtures/dev_users.json
-
-#./manage.py runserver 0.0.0.0:8000
 
 gunicorn --bind :8000 -w 2 fir.wsgi:application

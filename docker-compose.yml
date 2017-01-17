@@ -30,7 +30,7 @@ services:
     volumes_from:
       - webapp
     ports:
-      - "8080:8080"
+      - "8000:8080"
     links:
       - webapp:webapp
     depends_on:
@@ -61,8 +61,11 @@ services:
       - .:/app/FIR
     links:
       - redis
+      - db
     depends_on:
       - redis
+    env_file:
+      - ./mysql.env
 
 volumes:
     redisdata:

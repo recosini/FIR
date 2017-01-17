@@ -20,5 +20,4 @@ celery_app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
 if __name__ == '__main__':
-    print settings.REDIS_HOST
     celery_app.start()
